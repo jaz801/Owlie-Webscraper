@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Website</title>
+    <style>
+        /* Your CSS styles go here */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav {
+            background-color: #444;
+            padding: 10px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav li {
+            margin-right: 20px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>My Website</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+    <main>
+        <h2>This website is an MVP</h2>
+        <p>if you click on the buttons below, respective actions will be performed.</p>
+
+        <p><a href="https://docs.google.com/spreadsheets/d/1EMECLMuTk6WD6Zn1kQHCM8vf_Cgmb6yFknt_fild_xo/edit#gid=0" target="_blank">Google Sheets Link</a></p>
+
+        <button onclick="updateWebsite()">Update Websites</button>
+        
+        <!-- Button to trigger the selenium.py script via Flask -->
+        <button onclick="runSeleniumScript()">selenium</button>
+
+        <script>
+            function updateWebsite() {
+                // Send a POST request to the '/update' route in the Flask app
+                fetch('/update', {
+                    method: 'POST'
+                })
+                .then(response => response.text())
+                .then(message => alert(message))
+                .catch(error => console.error(error));
+            }
+
+            function runSeleniumScript() {
+                // Send a POST request to the '/selenium' route in the Flask app
+                fetch('/selenium', {
+                    method: 'POST'
+                })
+                .then(response => response.text())
+                .then(message => alert(message))
+                .catch(error => console.error(error));
+            }
+        </script>
+    </main>
+    <footer>
+        &copy; 2023 My Website. All rights reserved.
+    </footer>
+</body>
+
+</html>
+
+
+

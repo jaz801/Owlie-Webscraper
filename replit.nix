@@ -1,8 +1,11 @@
 { pkgs }: {
   deps = [
+    pkgs.wget
     pkgs.python310Full
     pkgs.replitPackages.prybar-python310
     pkgs.replitPackages.stderred
+    pkgs.chromium
+    pkgs.chromedriver
   ];
   env = {
     PYTHON_LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath [
