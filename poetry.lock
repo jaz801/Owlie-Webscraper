@@ -395,7 +395,7 @@ pyasn1 = ">=0.1.3"
 
 [[package]]
 name = "selenium"
-version = "4.11.2"
+version = "4.10.0"
 description = ""
 category = "main"
 optional = false
@@ -526,7 +526,7 @@ h11 = ">=0.9.0,<1"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "7189a269612bbe31715b8d84d4d6f1aa759ef37697511b86f6aa8826904815a3"
+content-hash = "e03ff1a24beb4bac5714b4758bc84562009a6c28aa884d0b709428dd9874baff"
 
 [metadata.files]
 attrs = []
