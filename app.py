@@ -11,7 +11,7 @@ def hello_world():
 def update_website():
     try:
         # List of Python scripts to run
-        scripts_to_run = ['Asperion.py', 'appfoundery.py', 'aimms.py', 'aexus.py', 'adveronline.py', '4vision.py', '6gorrials.py', '4itgroup.py', '5miles.py', 'admisol.py', 'addmore.py']
+        scripts_to_run = ['Asperion.py', 'appfoundery.py', 'aimms.py', 'aexus.py', 'adveronline.py', '4vision.py', '6gorrials.py', '4itgroup.py', '5miles.py', 'admisol.py', 'addmore.py','acco_group.py']
         
         # Run each Python script using subprocess
         for script in scripts_to_run:
@@ -24,7 +24,7 @@ def update_website():
 @app.route('/selenium', methods=['POST'])
 def run_selenium_script():
     try:
-        subprocess.run(['python', 'selenium_script.py'], check=True)
+        subprocess.run(['python', 'booqi.py'], check=True)
         return 'Selenium script executed successfully'
     except subprocess.CalledProcessError:
         return 'Error running the selenium script'
