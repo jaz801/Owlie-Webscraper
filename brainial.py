@@ -16,19 +16,19 @@ def get_driver():
     return driver
 
 def main():
-    url = 'https://brainstud.nl/vacatures/'  # Change URL
+    url = 'https://www.brainial.com/careers#jobs_section'  # Updated URL
 
     try:
         driver = get_driver()
         driver.get(url)
 
-        h3_elements = driver.find_elements(By.CLASS_NAME, 'p.large.text-black.mb-2')  # Find all <h3> elements with class "p large text-black mb-2"
+        h4_elements = driver.find_elements(By.CLASS_NAME, 'job-item-heading')  # Find all <h4> elements with class "job-item-heading"
         stored_items = []
 
-        for h3 in h3_elements:
-            h3_text = h3.text.strip()
-            if h3_text:
-                stored_items.append(h3_text)
+        for h4 in h4_elements:
+            h4_text = h4.text.strip()
+            if h4_text:
+                stored_items.append(h4_text)
 
         driver.quit()
 
@@ -42,19 +42,19 @@ def main():
         worksheet_name = 'Blad1'
         worksheet = gc.open_by_key(spreadsheet_key).worksheet(worksheet_name)
 
-        # Change row to 37
-        row_number = 37
+        # Change row to 36
+        row_number = 36
 
-        worksheet.update_cell(row_number, 1, url)  # Updated to row 37
+        worksheet.update_cell(row_number, 1, url)  # Updated to row 36
         for i, item in enumerate(stored_items, start=1):
-            worksheet.update_cell(row_number, i + 1, item)  # Updated to row 37 if item is not empty
+            worksheet.update_cell(row_number, i + 1, item)  # Updated to row 36 if item is not empty
             print(f"Added item {i}: {item}")
 
         amsterdam_tz = pytz.timezone('Europe/Amsterdam')
         current_datetime_amsterdam = datetime.now(amsterdam_tz)
 
-        worksheet.update_cell(row_number, len(stored_items) + 2, current_datetime_amsterdam.strftime("%Y-%m-%d"))  # Updated to row 37
-        worksheet.update_cell(row_number, len(stored_items) + 3, current_datetime_amsterdam.strftime("%H:%M:%S"))  # Updated to row 37
+        worksheet.update_cell(row_number, len(stored_items) + 2, current_datetime_amsterdam.strftime("%Y-%m-%d"))  # Updated to row 36
+        worksheet.update_cell(row_number, len(stored_items) + 3, current_datetime_amsterdam.strftime("%H:%M:%S"))  # Updated to row 36
         print(f"Updated cell: {row_number}, {current_datetime_amsterdam.strftime('%Y-%m-%d')}")
         print(f"Updated cell: {row_number}, {current_datetime_amsterdam.strftime('%H:%M:%S')}")
 
@@ -63,56 +63,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
