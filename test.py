@@ -16,24 +16,26 @@ def get_driver():
     return driver
 
 def main():
-    url = 'https://www.arcadiz.com/en/jobs'  # Updated URL
-    h3_contents = []  # List to store <h3> content
+    url = 'https://avinty.com/werken-bij-avinty/'  # Updated URL
+    h2_contents = []  # List to store <h2> content
 
     try:
         driver = get_driver()
         driver.get(url)
 
-        h3_elements = driver.find_elements(By.CSS_SELECTOR, 'h3')  # Find <h3> elements
+        # Find <h2> elements with class="entry-title"
+        h2_elements = driver.find_elements(By.CSS_SELECTOR, 'h2.entry-title')
 
-        for h3_element in h3_elements:
-            h3_text = h3_element.text.strip()
-            h3_contents.append(h3_text)  # Append content to the list
+        for h2_element in h2_elements:
+            h2_text = h2_element.text.strip()
+            if h2_text:  # Check if the content is not empty
+                h2_contents.append(h2_text)  # Append content to the list
 
         driver.quit()
 
-        # Print the list of <h3> contents
-        for index, content in enumerate(h3_contents, start=1):
-            print(f"<h3> {index}:", content)
+        # Print the list of <h2> contents
+        for index, content in enumerate(h2_contents, start=1):
+            print(f"<h2> {index}:", content)
 
     except Exception as e:
         print("An error occurred:", e)
@@ -41,6 +43,10 @@ def main():
 # Call the main function
 if __name__ == "__main__":
     main()
+
+
+
+
 
 
 
