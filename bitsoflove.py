@@ -16,19 +16,19 @@ def get_driver():
     return driver
 
 def main():
-    url = 'https://werkenbij.blue10.com/'  # Updated URL
+    url = 'https://www.bitsoflove.be/careers#job-openings'  # Updated URL
 
     try:
         driver = get_driver()
         driver.get(url)
 
-        h5_elements = driver.find_elements(By.CLASS_NAME, 'title')  # Find all <h5> elements with class "title"
+        h3_elements = driver.find_elements(By.CLASS_NAME, 'h4.mb-3')  # Find all <h3> elements with the specified class
         stored_items = []
 
-        for h5 in h5_elements:
-            h5_text = h5.text.strip()
-            if h5_text:
-                stored_items.append(h5_text)
+        for h3 in h3_elements:
+            h3_text = h3.text.strip()
+            if h3_text:
+                stored_items.append(h3_text)
 
         driver.quit()
 
@@ -42,19 +42,19 @@ def main():
         worksheet_name = 'Blad1'
         worksheet = gc.open_by_key(spreadsheet_key).worksheet(worksheet_name)
 
-        # Change row to 32
-        row_number = 32
+        # Change row to 27
+        row_number = 27
 
-        worksheet.update_cell(row_number, 1, url)  # Updated to row 32
+        worksheet.update_cell(row_number, 1, url)  # Updated to row 27
         for i, item in enumerate(stored_items, start=1):
-            worksheet.update_cell(row_number, i + 1, item)  # Updated to row 32 if item is not empty
+            worksheet.update_cell(row_number, i + 1, item)  # Updated to row 27 if item is not empty
             print(f"Added item {i}: {item}")
 
         amsterdam_tz = pytz.timezone('Europe/Amsterdam')
         current_datetime_amsterdam = datetime.now(amsterdam_tz)
 
-        worksheet.update_cell(row_number, len(stored_items) + 2, current_datetime_amsterdam.strftime("%Y-%m-%d"))  # Updated to row 32
-        worksheet.update_cell(row_number, len(stored_items) + 3, current_datetime_amsterdam.strftime("%H:%M:%S"))  # Updated to row 32
+        worksheet.update_cell(row_number, len(stored_items) + 2, current_datetime_amsterdam.strftime("%Y-%m-%d"))  # Updated to row 27
+        worksheet.update_cell(row_number, len(stored_items) + 3, current_datetime_amsterdam.strftime("%H:%M:%S"))  # Updated to row 27
         print(f"Updated cell: {row_number}, {current_datetime_amsterdam.strftime('%Y-%m-%d')}")
         print(f"Updated cell: {row_number}, {current_datetime_amsterdam.strftime('%H:%M:%S')}")
 
@@ -63,39 +63,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
