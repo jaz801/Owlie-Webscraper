@@ -11,7 +11,7 @@ def hello_world():
 def update_website():
     try:
         # List of Python scripts to run
-        scripts_to_run = ['Asperion.py', 'appfoundery.py', 'aimms.py', 'aexus.py', 'adveronline.py', '4vision.py', '6gorrials.py', '4itgroup.py', '5miles.py', 'admisol.py', 'acco_group.py', 'agisko.py','apixa.py', 'apptweak.py', 'wiseman.py','arcadis.py', 'askphil.py', 'asperion.py','atomikos.py','avinity.py', 'regnology.py','bastion.py','bcs.py','craftzing.py','benetworks.py','mediabrands.py']
+        scripts_to_run = ['Asperion.py', 'appfoundery.py', 'aimms.py', 'aexus.py', 'adveronline.py', '4vision.py', '6gorrials.py', '4itgroup.py', '5miles.py', 'admisol.py', 'acco_group.py', 'agisko.py','apixa.py', 'apptweak.py', 'wiseman.py','arcadis.py', 'askphil.py', 'asperion.py','atomikos.py','avinity.py', 'regnology.py','bastion.py','bcs.py','craftzing.py','benetworks.py','mediabrands.py','billink.py','kubus.py','birdsai.py']
         
         # Run each Python script using subprocess
         for script in scripts_to_run:
