@@ -16,14 +16,14 @@ def get_driver():
     return driver
 
 def main():
-    url = 'https://jobs.channelengine.com/'  # Change URL
-    row_number = 50  # Change row to 50
+    url = 'https://www.cerm.net/jobs'  # Change URL
+    row_number = 49  # Change row to 49
 
     try:
         driver = get_driver()
         driver.get(url)
 
-        div_elements = driver.find_elements(By.CLASS_NAME, 'u0th15-1')  # Find all <div> elements with class="u0th15-1"
+        div_elements = driver.find_elements(By.CLASS_NAME, 'views-field-title')  # Find all <div> elements with class="views-field-title"
         stored_items = []
 
         for div_element in div_elements:
@@ -43,16 +43,16 @@ def main():
         worksheet_name = 'Blad1'
         worksheet = gc.open_by_key(spreadsheet_key).worksheet(worksheet_name)
 
-        worksheet.update_cell(row_number, 1, url)  # Update to row 50
+        worksheet.update_cell(row_number, 1, url)  # Update to row 49
         for i, item in enumerate(stored_items, start=1):
-            worksheet.update_cell(row_number, i + 1, item)  # Update to row 50 if item is not empty
+            worksheet.update_cell(row_number, i + 1, item)  # Update to row 49 if item is not empty
             print(f"Added item {i}: {item}")
 
         amsterdam_tz = pytz.timezone('Europe/Amsterdam')
         current_datetime_amsterdam = datetime.now(amsterdam_tz)
 
-        worksheet.update_cell(row_number, len(stored_items) + 2, current_datetime_amsterdam.strftime("%Y-%m-%d"))  # Update to row 50
-        worksheet.update_cell(row_number, len(stored_items) + 3, current_datetime_amsterdam.strftime("%H:%M:%S"))  # Update to row 50
+        worksheet.update_cell(row_number, len(stored_items) + 2, current_datetime_amsterdam.strftime("%Y-%m-%d"))  # Update to row 49
+        worksheet.update_cell(row_number, len(stored_items) + 3, current_datetime_amsterdam.strftime("%H:%M:%S"))  # Update to row 49
         print(f"Updated cell: {row_number}, {current_datetime_amsterdam.strftime('%Y-%m-%d')}")
         print(f"Updated cell: {row_number}, {current_datetime_amsterdam.strftime('%H:%M:%S')}")
 
@@ -61,14 +61,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-
-
-
-
-
-
-
-
-
