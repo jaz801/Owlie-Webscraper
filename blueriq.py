@@ -16,32 +16,19 @@ def get_driver():
     return driver
 
 def main():
-    url = 'https://www.bpiservices.eu/vacatures/'  # Updated URL
+    url = 'https://www.blueriq.com/werken-bij'  # Updated URL
 
     try:
         driver = get_driver()
         driver.get(url)
 
-        div_elements = driver.find_elements(By.CSS_SELECTOR, '.elementor-widget-container')  # Find all <div> elements with the specified class
+        h4_elements = driver.find_elements(By.CLASS_NAME, 'vacancy__item__title')  # Find all <h4> elements with class "vacancy__item__title"
         stored_items = []
 
-        for div in div_elements:
-            div_text = div.text.strip()
-            if '.' not in div_text and 'Slim genoeg om het simpel te houden' not in div_text:
-                if not any(phrase in div_text for phrase in [
-                    'Ga naar vacature',
-                    'Ⓒ BPI Services',
-                    'Contact ons',
-                    'Over ons',
-                    '2023',
-                    'Vacatures',
-                    'Neem contact',
-                    'Oplossingen',
-                    'Ga naar uw oplossing'
-                ]):
-                    stored_items.append(div_text)
-                    if len(stored_items) >= 10:  # Limit to 10 items
-                        break
+        for h4 in h4_elements:
+            h4_text = h4.text.strip()
+            if h4_text:
+                stored_items.append(h4_text)
 
         driver.quit()
 
@@ -55,19 +42,19 @@ def main():
         worksheet_name = 'Blad1'
         worksheet = gc.open_by_key(spreadsheet_key).worksheet(worksheet_name)
 
-        # Change row to 35
-        row_number = 35
+        # Change row to 33
+        row_number = 33
 
-        worksheet.update_cell(row_number, 1, url)  # Updated to row 35
+        worksheet.update_cell(row_number, 1, url)  # Updated to row 33
         for i, item in enumerate(stored_items, start=1):
-            worksheet.update_cell(row_number, i + 1, item)  # Updated to row 35 if item is not empty
+            worksheet.update_cell(row_number, i + 1, item)  # Updated to row 33 if item is not empty
             print(f"Added item {i}: {item}")
 
         amsterdam_tz = pytz.timezone('Europe/Amsterdam')
         current_datetime_amsterdam = datetime.now(amsterdam_tz)
 
-        worksheet.update_cell(row_number, len(stored_items) + 2, current_datetime_amsterdam.strftime("%Y-%m-%d"))  # Updated to row 35
-        worksheet.update_cell(row_number, len(stored_items) + 3, current_datetime_amsterdam.strftime("%H:%M:%S"))  # Updated to row 35
+        worksheet.update_cell(row_number, len(stored_items) + 2, current_datetime_amsterdam.strftime("%Y-%m-%d"))  # Updated to row 33
+        worksheet.update_cell(row_number, len(stored_items) + 3, current_datetime_amsterdam.strftime("%H:%M:%S"))  # Updated to row 33
         print(f"Updated cell: {row_number}, {current_datetime_amsterdam.strftime('%Y-%m-%d')}")
         print(f"Updated cell: {row_number}, {current_datetime_amsterdam.strftime('%H:%M:%S')}")
 
@@ -76,52 +63,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
