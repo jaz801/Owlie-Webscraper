@@ -16,20 +16,21 @@ def get_driver():
     return driver
 
 def main():
-    url = 'https://jobs.channelengine.com/'  # Change URL
-    row_number = 50  # Change row to 50
+    url = 'https://www.sinch.com/careers/job-listings/'  # Updated URL
 
     try:
         driver = get_driver()
         driver.get(url)
 
-        div_elements = driver.find_elements(By.CLASS_NAME, 'u0th15-1')  # Find all <div> elements with class="u0th15-1"
+        li_elements = driver.find_elements(By.CSS_SELECTOR, 'li.job-list-item')  # Find all <li> elements with the specified class
         stored_items = []
 
-        for div_element in div_elements:
-            div_text = div_element.text.strip()
-            if div_text and div_text not in stored_items:  # Check for duplicates before adding
-                stored_items.append(div_text)
+        for li in li_elements:
+            li_text = li.text.strip()
+            # Exclude lines containing 'Read more'
+            li_text = '\n'.join([line for line in li_text.split('\n') if 'Read more' not in line])
+            if li_text:
+                stored_items.append(li_text)
 
         driver.quit()
 
@@ -43,16 +44,19 @@ def main():
         worksheet_name = 'Blad1'
         worksheet = gc.open_by_key(spreadsheet_key).worksheet(worksheet_name)
 
-        worksheet.update_cell(row_number, 1, url)  # Update to row 50
+        # Change row to 25
+        row_number = 51
+
+        worksheet.update_cell(row_number, 1, url)  # Updated to row 25
         for i, item in enumerate(stored_items, start=1):
-            worksheet.update_cell(row_number, i + 1, item)  # Update to row 50 if item is not empty
+            worksheet.update_cell(row_number, i + 1, item)  # Updated to row 25 if item is not empty
             print(f"Added item {i}: {item}")
 
         amsterdam_tz = pytz.timezone('Europe/Amsterdam')
         current_datetime_amsterdam = datetime.now(amsterdam_tz)
 
-        worksheet.update_cell(row_number, len(stored_items) + 2, current_datetime_amsterdam.strftime("%Y-%m-%d"))  # Update to row 50
-        worksheet.update_cell(row_number, len(stored_items) + 3, current_datetime_amsterdam.strftime("%H:%M:%S"))  # Update to row 50
+        worksheet.update_cell(row_number, len(stored_items) + 2, current_datetime_amsterdam.strftime("%Y-%m-%d"))  # Updated to row 25
+        worksheet.update_cell(row_number, len(stored_items) + 3, current_datetime_amsterdam.strftime("%H:%M:%S"))  # Updated to row 25
         print(f"Updated cell: {row_number}, {current_datetime_amsterdam.strftime('%Y-%m-%d')}")
         print(f"Updated cell: {row_number}, {current_datetime_amsterdam.strftime('%H:%M:%S')}")
 
@@ -61,14 +65,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-
-
-
-
-
-
-
-
-

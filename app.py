@@ -11,7 +11,7 @@ def hello_world():
 def update_website():
     try:
         # List of Python scripts to run
-        scripts_to_run = ['Asperion.py', 'appfoundery.py', 'aimms.py', 'aexus.py', 'adveronline.py', '4vision.py', '6gorrials.py', '4itgroup.py', '5miles.py', 'admisol.py', 'acco_group.py', 'agisko.py','apixa.py', 'apptweak.py', 'wiseman.py','arcadis.py', 'askphil.py', 'asperion.py','atomikos.py','avinity.py', 'regnology.py','bastion.py','bcs.py','benetworks.py','mediabrands.py','billink.py','kubus.py','birdsai.py','bitsoflove.py','bizstory.py','blaud.py','blauw.py','bloom.py','blue10.py','craftzing.py','blueriq.py', 'boondoggle.py','bpi.py','brainial.py', 'brainstud.py','bridgefund.py','brenger.py', 'brightest.py','bringme.py','calibrate.py','cake.py', 'canguru.py','carcollect.py','carya.py','css.py','cenosco.py','cerm.py','channelengine.py' ]
+        scripts_to_run = ['Asperion.py', 'appfoundery.py', 'aimms.py', 'aexus.py', 'adveronline.py', '4vision.py', '6gorrials.py', '4itgroup.py', '5miles.py', 'admisol.py', 'acco_group.py', 'agisko.py','apixa.py', 'apptweak.py', 'wiseman.py','arcadis.py', 'askphil.py', 'asperion.py','atomikos.py','avinity.py', 'regnology.py','bastion.py','bcs.py','benetworks.py','mediabrands.py','billink.py','kubus.py','birdsai.py','bitsoflove.py','bizstory.py','blaud.py','blauw.py','bloom.py','blue10.py','craftzing.py','blueriq.py', 'boondoggle.py','bpi.py','brainial.py', 'brainstud.py','bridgefund.py','brenger.py', 'brightest.py','bringme.py','calibrate.py','cake.py', 'canguru.py','carcollect.py','carya.py','css.py','cenosco.py','cerm.py','channelengine.py', 'sinch.py','clearmedia.py', 'cleeng.py','cloudinnovation.py', 'cloudway.py', 'cloudwise.py']
         
         # Run each Python script using subprocess
         for script in scripts_to_run:
@@ -24,7 +24,7 @@ def update_website():
 @app.route('/selenium', methods=['POST'])
 def run_selenium_script():
     try:
-        subprocess.run(['python', 'test.py'], check=True)
+        subprocess.run(['python', 'test2.py'], check=True)
         return 'Selenium script executed successfully'
     except subprocess.CalledProcessError:
         return 'Error running the selenium script'
