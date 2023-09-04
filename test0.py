@@ -12,29 +12,48 @@ def get_driver():
     return driver
 
 def main():
-    url = 'https://werkenbijcloudwise.nl/'  # Updated URL
+    url = 'https://corverdevelopment.nl/vacatures/'
 
     try:
         driver = get_driver()
         driver.get(url)
 
-        div_elements = driver.find_elements(By.CSS_SELECTOR, 'div.sc-123pquh-2.iKddul')  # Find <div> elements with the specified class
-        stored_items = []
+        h3_elements = driver.find_elements(By.CSS_SELECTOR, 'h3')  # Find h3 elements
 
-        for div_element in div_elements:
-            div_text = div_element.text.strip()
+        # Create a list to store filtered h3 elements
+        filtered_elements = []
 
-            if div_text:
-                stored_items.append(div_text)
-                print("<div> content:", div_text)
+        for h3 in h3_elements:
+            h3_text = h3.text.strip()
+            filtered_elements.append(h3_text)
 
         driver.quit()
+
+        for text in filtered_elements:
+            print(text)
 
     except Exception as e:
         print("Error:", e)
 
 if __name__ == "__main__":
     main()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

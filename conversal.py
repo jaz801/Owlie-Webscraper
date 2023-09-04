@@ -16,20 +16,20 @@ def get_driver():
     return driver
 
 def main():
-    url = 'https://corverdevelopment.nl/vacatures/'
+    url = 'https://www.conversal.be/vacatures/'
+   
 
     try:
         driver = get_driver()
         driver.get(url)
 
-        h3_elements = driver.find_elements(By.CSS_SELECTOR, 'h3')
+        h2_elements = driver.find_elements(By.CSS_SELECTOR, 'h2.job__title')  # Updated CSS selector
+        text_list = []
 
-        filtered_elements = []  # Create an empty list to store filtered elements
-
-        for h3_element in h3_elements:
-            text = h3_element.text.strip()
-            if text:  # Only add non-empty elements to the list
-                filtered_elements.append(text)
+        for h2 in h2_elements:
+            h2_text = h2.text.strip()  # Get the text content of the <h2> element
+            if h2_text:  # Check if the text is not empty
+                text_list.append(h2_text)
 
         driver.quit()
 
@@ -44,18 +44,18 @@ def main():
         worksheet = gc.open_by_key(spreadsheet_key).worksheet(worksheet_name)
 
         # Change row to 25
-        row_number = 62
+        row_number = 61
 
         worksheet.update_cell(row_number, 1, url)  # Updated to row 25
-        for i, item in enumerate(filtered_elements, start=1):  # Use the filtered_elements list
+        for i, item in enumerate(text_list, start=1):
             worksheet.update_cell(row_number, i + 1, item)  # Updated to row 25 if item is not empty
             print(f"Added item {i}: {item}")
 
         amsterdam_tz = pytz.timezone('Europe/Amsterdam')
         current_datetime_amsterdam = datetime.now(amsterdam_tz)
 
-        worksheet.update_cell(row_number, len(filtered_elements) + 2, current_datetime_amsterdam.strftime("%Y-%m-%d"))  # Updated to row 25
-        worksheet.update_cell(row_number, len(filtered_elements) + 3, current_datetime_amsterdam.strftime("%H:%M:%S"))  # Updated to row 25
+        worksheet.update_cell(row_number, len(text_list) + 2, current_datetime_amsterdam.strftime("%Y-%m-%d"))  # Updated to row 25
+        worksheet.update_cell(row_number, len(text_list) + 3, current_datetime_amsterdam.strftime("%H:%M:%S"))  # Updated to row 25
         print(f"Updated cell: {row_number}, {current_datetime_amsterdam.strftime('%Y-%m-%d')}")
         print(f"Updated cell: {row_number}, {current_datetime_amsterdam.strftime('%H:%M:%S')}")
 
@@ -64,9 +64,4 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-
-
-
 
